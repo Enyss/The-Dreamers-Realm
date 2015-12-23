@@ -1,6 +1,8 @@
 #pragma once
 
-typedef struct
+#include "component.h"
+
+typedef struct : public Component
 {
 	int x;
 	int y;

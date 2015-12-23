@@ -2,13 +2,15 @@
 
 #include <map>
 
+#include "Hash.h"
+
 class GameObject
 {
 public:
-	int GetComponent(int id);
-	void AddComponent(int id, int handle);
-	bool HasComponent(int id);
+	int GetComponent(Hash id);
+	void AddComponent(Hash id, int handle);
+	bool HasComponent(Hash id);
 
 private:
-	std::map< int,int > componentHandle;
+	std::map< Hash ,int > componentHandle;
 };

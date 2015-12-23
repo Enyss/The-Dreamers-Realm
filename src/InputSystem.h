@@ -2,6 +2,7 @@
 class Engine;
 #include <SDL.h>
 
+#include "Hash.h"
 #include "System.h"
 #include "Engine.h"
 

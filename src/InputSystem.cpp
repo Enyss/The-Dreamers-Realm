@@ -7,7 +7,7 @@ InputSystem::InputSystem(Engine * engine)
 
 void InputSystem::update(float dt)
 {
-	int state = engine->getState();
+	Hash state = engine->getState();
 	SDL_Event e;
 
 	while (SDL_PollEvent(&e) != 0)
@@ -15,12 +15,12 @@ void InputSystem::update(float dt)
 		//User requests quit
 		if (e.type == SDL_QUIT)
 		{
-			engine->setState( FixedHash("quit") );
+			engine->setState(Hash("quit") );
 		}
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		if (currentKeyStates[SDL_SCANCODE_ESCAPE])
 		{
-			engine->setState( FixedHash("quit") );
+			engine->setState(Hash("quit") );
 		}
 	}
 }

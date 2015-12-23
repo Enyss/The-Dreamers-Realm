@@ -8,7 +8,7 @@ RenderSystem::RenderSystem(Engine * engine, SDL_Renderer * renderer)
 
 void RenderSystem::init()
 {
-	em = static_cast<EntityManager*>(engine->getSystem(FixedHash("EntityManager")));
+	em = static_cast<EntityManager*>(engine->getSystem(Hash("EntityManager")));
 	SDL_Surface* loadedSurface = IMG_Load("gfx/tileSet.png");
 	if (loadedSurface == NULL)
 	{
@@ -36,20 +36,16 @@ void RenderSystem::update(float dt)
 	typedef array_type::index index;
 	array_type spriteMap(boost::extents[xSize][ySize][10]);
 	
-	for (std::vector<GameObject>::iterator it = em->entities.begin(); it != em->entities.end(); ++it)
+	for (std::vector<ScreenPosition>::iterator it = em->screenPosition.begin(); it != em->screenPosition.end(); ++it)
 	{
-		if (it->HasComponent(FixedHash("ScreenPosition")) && it->HasComponent(FixedHash("Sprites")))
+		if (it->entity!=0 && 0 <= it->x && it->x < xSize && 0 <= it->y && it->y < ySize)
 		{
-			ScreenPosition pos = em->screenPosition[it->GetComponent(FixedHash("ScreenPosition"))];
-			if (0 <= pos.x && pos.x < xSize && 0 <= pos.y && pos.y < ySize)
+			Sprites sprites = em->sprites[em->entities[it->entity][spritesComponent]];
+			for (int z = 0; z < 10; z++)
 			{
-				Sprites sprites = em->sprites[it->GetComponent(FixedHash("Sprites"))];
-				for (int z = 0; z < 10; z++)
+				if (sprites.sprites[z] != 0)
 				{
-					if (sprites.sprites[z] != 0)
-					{
-						spriteMap[pos.x][pos.y][z] = sprites.sprites[z];
-					}
+					spriteMap[it->x][it->y][z] = sprites.sprites[z];
 				}
 			}
 		}

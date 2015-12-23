@@ -149,26 +149,34 @@
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\InputSystem.cpp" />
-    <ClCompile Include="src\ObjectFactory.cpp" />
+    <ClCompile Include="src\EntityFactory.cpp" />
     <ClCompile Include="src\pugixml.cpp" />
     <ClCompile Include="src\RenderSystem.cpp" />
     <ClCompile Include="src\TheDreamersRealm.cpp" />
+    <ClCompile Include="src\xmlManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CellPosition.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\Engine.h" />
     <ClInclude Include="src\EntityManager.h" />
-    <ClInclude Include="src\FixedHash.h" />
-    <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\Hash.h" />
     <ClInclude Include="src\InputSystem.h" />
-    <ClInclude Include="src\ObjectFactory.h" />
+    <ClInclude Include="src\EntityFactory.h" />
     <ClInclude Include="src\pugiconfig.hpp" />
     <ClInclude Include="src\pugixml.hpp" />
     <ClInclude Include="src\RenderSystem.h" />
     <ClInclude Include="src\ScreenPosition.h" />
     <ClInclude Include="src\Sprites.h" />
     <ClInclude Include="src\System.h" />
+    <ClInclude Include="src\Tools.h" />
+    <ClInclude Include="src\xmlManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="xml\creatures.xml" />
+    <Xml Include="xml\master.xml" />
+    <Xml Include="xml\settings.xml" />
+    <Xml Include="xml\terrains.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

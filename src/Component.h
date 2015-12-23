@@ -2,4 +2,5 @@
 
 typedef struct
 {
+	int entity;
 } Component;

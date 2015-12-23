@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 #include "pugixml.hpp"
 
+#include "xmlManager.h"
 #include "Engine.h"
 
 typedef struct config
@@ -96,6 +97,9 @@ bool init(SDL_Window** window, SDL_Renderer ** renderer, config configuration)
 
 int main(int argc, char* args[])
 {
+	XmlManager xmlManager;
+	xmlManager.init("xml/master.xml");
+
 	config configuration = loadConfiguration("xml/settings.xml");
 	SDL_Window * window = NULL;
 	SDL_Renderer * renderer = NULL;

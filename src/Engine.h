@@ -5,12 +5,12 @@
 #include <iostream>
 #include <SDL.h>
 
-#include "FixedHash.h"
+#include "Hash.h"
 #include "System.h"
 
 
 #include "EntityManager.h"
-#include "ObjectFactory.h"
+//#include "EntityFactory.h"
 #include "RenderSystem.h"
 #include "InputSystem.h"
 
@@ -23,15 +23,15 @@ public:
 	void update(float dt);
 	void mainLoop(void);
 
-	void addSystem(System *sys, int id);
-	System* getSystem(int id);
+	void addSystem(System *sys, Hash id);
+	System* getSystem(Hash id);
 
-	int getState(void);
-	void setState(int state);
+	Hash getState(void);
+	void setState(Hash state);
 
 	
 private:
-	std::map<int, System*> systems;
-	int state;
+	std::map<Hash, System*> systems;
+	Hash state;
 	SDL_Renderer * renderer;
 };

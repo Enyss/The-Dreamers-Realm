@@ -2,11 +2,11 @@
 
 EntityManager::EntityManager()
 {
-	int N = 1000;
-	entities.reserve(N);
-	cellPosition.reserve(N);
-	screenPosition.reserve(N);
-	sprites.reserve(N);
+	int N = 100000;
+
+	std::array<int, 3> v = { 0,0,0 };
+	// Create a 3D array
+	entities.assign(N, v );
 }
 
 void EntityManager::update(float dt)
@@ -15,19 +15,23 @@ void EntityManager::update(float dt)
 
 void EntityManager::init(void)
 {
-	for (int x = 0; x < 10; x++)
+	int entityId = 1;
+	for (int x = 0; x < 100; x++)
 	{
-		for (int y = 0; y < 10; y++)
+		for (int y = 0; y < 100; y++)
 		{
-			entities.push_back(GameObject());
+			screenPosition.push_back(ScreenPosition(entityId, x, y));
 
-			screenPosition.push_back(ScreenPosition(x, y));
-			entities.back().AddComponent(FixedHash("ScreenPosition"), screenPosition.size() - 1);
+			entities[entityId][screenPositionComponent] = screenPosition.size() - 1;
 
-			sprites.push_back(Sprites());
-			entities.back().AddComponent(FixedHash("Sprites"), sprites.size() - 1);
+			Sprites s;
+			s.sprites[0] = 64 * 14 + 63;
+			s.entity = entityId;
+			sprites.push_back( s );
 
-			sprites[entities.back().GetComponent(FixedHash("Sprites"))].sprites[0] = 64 * 14 + 63;
+			entities[entityId][spritesComponent] = sprites.size() - 1;
+
+			entityId++;
 		}
 	}
 }
